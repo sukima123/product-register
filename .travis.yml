@@ -4,7 +4,7 @@ services: docker
 
 before_install:
   - docker-compose up --build -d
-  - docker login -u '$HEROKU_USERNAME' -p '$HEROKU_API_KEY' registry.heroku.com
+  - docker login -u '$HERUKU_USERNAME' -p '$HEROKU_API_KEY' registry.heroku.com
 
 script:
   - docker-compose exec --env 'RAILS_ENV=test' web rails db:create
@@ -12,7 +12,7 @@ script:
   - docker-compose exec --env 'RAILS_ENV=test' web rails test
 
 deploy:
-  provider:script
+  provider: script
   script:
     docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
